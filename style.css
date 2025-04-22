@@ -93,8 +93,8 @@ p {
 }
 
 .accordion-content {
-    padding: 16px;
-    display: none;
+    padding: 15px;
+    display: none; /* Hidden by default */
 }
 
 .accordion-content input {
@@ -136,5 +136,55 @@ p {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Table styling */
+#messageTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  #messageTable thead {
+    background-color: #6c63ff;
+    color: white;
+  }
+  
+  #messageTable th,
+  #messageTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #messageTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #messageTable tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  /* Optional: Add subtle rounding and spacing */
+  #messageTable th:first-child,
+  #messageTable td:first-child {
+    border-left: none;
+  }
+  
+  #messageTable th:last-child,
+  #messageTable td:last-child {
+    border-right: none;
+  }
+  
+  #messageTable tbody tr:first-child td {
+    border-top: none;
+  }
+  
+  #messageTable tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
 
 

@@ -29,7 +29,7 @@ function clearMessage() {
 // Event listener for the clear button
 document.getElementById("clearMessage").addEventListener("click", clearMessage);
 
-// Toggle accordion visibility
+// Toggle accordion visibility for new messages
 document.getElementById("toggleInput").addEventListener("click", function () {
     const content = document.getElementById("inputContainer");
     content.style.display = content.style.display === "block" ? "none" : "block";
@@ -52,8 +52,39 @@ document.getElementById("addMessageConfirm").addEventListener("click", function 
     const newMessage = input.value.trim();
     
     if (newMessage) {
-        messages.push(newMessage);
-        input.value = "";
-        showToast("New message added!");
+      messages.push(newMessage);
+      input.value = "";
+      showToast("New message added!");
+      renderMessageTable(); // Update the table
     }
 });
+
+// Populate the table with the existing messages
+function renderMessageTable() {
+  const tableBody = document.querySelector("#messageTable tbody");
+  tableBody.innerHTML = ""; // Clear existing rows
+
+  messages.forEach((msg, index) => {
+    const row = document.createElement("tr");
+    const indexCell = document.createElement("td");
+    const messageCell = document.createElement("td");
+
+    indexCell.textContent = index + 1;
+    messageCell.textContent = msg;
+
+    row.appendChild(indexCell);
+    row.appendChild(messageCell);
+    tableBody.appendChild(row);
+  });
+}
+
+// Toggle accordion visibility for sentences table
+document.getElementById("toggleTable").addEventListener("click", function () {
+  const tableContent = document.getElementById("tableContainer");
+  tableContent.style.display =
+    tableContent.style.display === "block" ? "none" : "block";
+});
+
+// Initial render of the message table
+renderMessageTable();
+
