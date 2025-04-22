@@ -62,21 +62,74 @@ document.getElementById("addMessageConfirm").addEventListener("click", function 
 // Populate the table with the existing messages
 function renderMessageTable() {
   const tableBody = document.querySelector("#messageTable tbody");
-  tableBody.innerHTML = ""; // Clear existing rows
+  tableBody.innerHTML = "";
 
   messages.forEach((msg, index) => {
     const row = document.createElement("tr");
-    const indexCell = document.createElement("td");
-    const messageCell = document.createElement("td");
 
+    // Index cell
+    const indexCell = document.createElement("td");
     indexCell.textContent = index + 1;
+
+    // Action cell with icons
+    const actionCell = document.createElement("td");
+
+    // Delete icon
+    const deleteIcon = document.createElement("i");
+    deleteIcon.className = "fas fa-trash delete-icon";
+    deleteIcon.title = "Delete message";
+    deleteIcon.addEventListener("click", () => {
+      messages.splice(index, 1);
+      renderMessageTable();
+    });
+
+    // Edit icon
+    const editIcon = document.createElement("i");
+    editIcon.className = "fas fa-pen edit-icon";
+    editIcon.title = "Edit message";
+    editIcon.addEventListener("click", () => {
+      // Replace the message cell with an input field
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = msg;
+      input.className = "edit-input";
+      messageCell.innerHTML = "";
+      messageCell.appendChild(input);
+      input.focus();
+
+      // Save on Enter or blur
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          saveEdit();
+        }
+      });
+      input.addEventListener("blur", saveEdit);
+
+      function saveEdit() {
+        const updatedText = input.value.trim();
+        if (updatedText !== "") {
+          messages[index] = updatedText;
+          renderMessageTable();
+        } else {
+          renderMessageTable(); // Reset if empty input
+        }
+      }
+    });
+
+    actionCell.appendChild(deleteIcon);
+    actionCell.appendChild(editIcon);
+
+    // Message cell
+    const messageCell = document.createElement("td");
     messageCell.textContent = msg;
 
     row.appendChild(indexCell);
+    row.appendChild(actionCell);
     row.appendChild(messageCell);
     tableBody.appendChild(row);
   });
 }
+
 
 // Toggle accordion visibility for sentences table
 document.getElementById("toggleTable").addEventListener("click", function () {

@@ -186,5 +186,47 @@ p {
     border-bottom: none;
   }
   
+  .delete-icon,
+  .edit-icon {
+    margin: 0 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  
+  .delete-icon {
+    color: #ff4d4f;
+  }
+  
+  .delete-icon:hover {
+    transform: scale(1.3);
+    color: #d9363e;
+  }
+  
+  .edit-icon {
+    color: #6c63ff;
+  }
+  
+  .edit-icon:hover {
+    transform: scale(1.3);
+    color: #4a3dff;
+  }
 
+  .edit-input {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .edit-input:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+  }
+  
+  
 
